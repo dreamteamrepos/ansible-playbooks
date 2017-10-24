@@ -1,0 +1,43 @@
+- src: git@git.badger.net:DREAM-roles/artifactory.git
+  scm: git
+  name: artifactory
+
+- src: git@git.badger.net:DREAM-roles/authentication.git
+  scm: git
+  name: authentication
+
+#- src: git@git.badger.net:DREAM-roles/authorization.git
+#  scm: git
+#  name: authorization
+
+- src: git@git.badger.net:DREAM-roles/bash.git
+  scm: git
+  name: bash
+
+- src: git@git.badger.net:DREAM-roles/global_base.git
+  scm: git
+  name: global_base
+
+- src: git@git.badger.net:DREAM-roles/host_rename.git
+  scm: git
+  name: host_rename
+
+- src: git@git.badger.net:DREAM-roles/motd.git
+  scm: git
+  name: motd
+
+- src: git@git.badger.net:DREAM-roles/nginx.git
+  scm: git
+  name: nginx
+
+- src: git@git.badger.net:DREAM-roles/postgresql.git
+  scm: git
+  name: postgresql
+
+- src: git@git.badger.net:DREAM-roles/repositories.git
+  scm: git
+  name: repositories
+
+- src: git@git.badger.net:DREAM-roles/teaming.git
+  scm: git
+  name: teaming

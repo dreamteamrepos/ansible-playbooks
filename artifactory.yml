@@ -1,0 +1,13 @@
+---
+- include: infrastructure.yaml
+
+- name: Set up Artifactory
+  hosts: artifactory
+  become: True
+  gather_facts: true
+
+  roles:
+    - teaming
+    - nginx
+    - postgresql
+    - artifactory
