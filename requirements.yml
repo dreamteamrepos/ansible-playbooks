@@ -6,9 +6,9 @@
   scm: git
   name: authentication
 
-#- src: git@git.badger.net:DREAM-roles/authorization.git
-#  scm: git
-#  name: authorization
+- src: git@git.badger.net:DREAM-roles/authorization.git
+  scm: git
+  name: authorization
 
 - src: git@git.badger.net:DREAM-roles/bash.git
   scm: git
