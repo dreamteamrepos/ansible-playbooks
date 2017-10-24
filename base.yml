@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: True
+  become_method: sudo
+  gather_facts: true
+  roles:
+    - host_rename
+    - repositories
+    - global_base
+    - bash
+    - motd
