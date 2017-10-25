@@ -5,5 +5,8 @@
   become: True
   become_method: sudo
   gather_facts: False
+  vars_files:
+    - vault/certs/{{ realm }}.yml
   roles:
     - authentication
+    - authorization
