@@ -1,12 +1,12 @@
-pci-base
-=========
+ansible-playbooks
+=================
 
 Installs all the roles needed for use with the ansible-playbooks repository
 
 Requirements
 ------------
 
-1. Ansible 2.2
+1. Ansible 2.4
 
 Dependencies
 ------------
