@@ -38,3 +38,7 @@ teams:
       - em4
       - p2p1
       - p2p2
+
+remote_sudoers:
+  - sudo_group: DreamTeam_Admin
+    password_required: True
