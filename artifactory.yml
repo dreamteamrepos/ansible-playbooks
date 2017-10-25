@@ -1,5 +1,5 @@
 ---
-- include: infrastructure.yaml
+- include: infrastructure.yml
 
 - name: Set up Artifactory
   hosts: artifactory

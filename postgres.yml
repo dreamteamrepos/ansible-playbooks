@@ -1,6 +1,6 @@
 ---
-- include: base.yaml
-- include: infrastructure.yaml
+- include: base.yml
+- include: infrastructure.yml
 
 - name: Set up postgres
   hosts: postgresql
