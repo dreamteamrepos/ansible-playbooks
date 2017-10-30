@@ -16,9 +16,9 @@
 
 - src: git@git.badger.net:DREAM-roles/breakglass.git
   scm: git
-  name: bash
+  name: breakglass
 
-  - src: git@git.badger.net:DREAM-roles/global_base.git
+- src: git@git.badger.net:DREAM-roles/global_base.git
   scm: git
   name: global_base
 
