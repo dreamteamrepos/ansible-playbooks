@@ -1,5 +1,7 @@
 ---
 - include: infrastructure.yml
+- include: clan.yml
+  when: clan
 
 - name: Set up Artifactory
   hosts: artifactory

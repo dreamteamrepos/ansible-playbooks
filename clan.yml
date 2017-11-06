@@ -1,0 +1,48 @@
+---
+
+- name: Set up CLAN system for artifactory
+  hosts: artifactory
+  become: True
+  gather_facts: true
+
+  handlers:
+    - name: restart nfs
+      service: name=nfs-server state=restarted
+
+    - name: reload firewalld
+      service: name=firewalld state=reloaded
+
+  roles:
+    - { role: geerlingguy.nfs }
+
+  vars:
+    nfs_exports: { "//var/opt/jfrog/rh-repos 192.168.124.0/24(rw,sync,no_root_squash)" }
+
+  tasks:
+    - name: Install a clan packages
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - "@^graphical-server-environment"
+        - "virt-install"
+
+    - name: Enable and start service
+      service:
+        name: "{{ item }}"
+        enabled: yes
+        state: started
+      with_items:
+        - "nfs-server"
+
+    - name: Set the target to graphical
+      command: systemctl set-default graphical.target
+
+    - name: Open rpc-bind ports in the firewall
+      firewalld:
+        service: "{{ item }}"
+        permanent: true
+        state: enabled
+      with_items:
+        - "rpc-bind"
+      notify: reload firewalld
