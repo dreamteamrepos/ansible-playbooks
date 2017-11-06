@@ -14,12 +14,3 @@ motd_text: |
           
             systemctl status $service_name
 
-
-
-# lv_name: lv_data           # Name of Logical Volume to create
-# vg_name: vg_data           # Name of the vg to create
-# device: "/dev/sdb"             # Device physical volume/partition exists on
-# add_space: '100'               # How big is the new partition to add to VG?
-# unit: '%'                      # Unit type to use with parted
-# mount_point: "/var/lib/pgsql"  # Where to mount the new lvm
-# filesystem: xfs
