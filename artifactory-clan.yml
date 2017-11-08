@@ -1,5 +1,5 @@
 ---
-- include: infrastructure.yml
+- include: base.yml
 
 - name: Set up Artifactory
   hosts: artifactory
@@ -11,3 +11,6 @@
     - nginx
     - postgresql
     - artifactory
+
+- import_playbook: clan.yml
+  when: clan
