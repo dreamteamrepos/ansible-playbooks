@@ -1,0 +1,72 @@
+---
+# This playbook is only needed for the commercial lan server
+# Once this completes there are a few manual steps that will currently need to be run
+# See the C-LAN.md file for more information
+
+- name: Set up CLAN system for artifactory
+  hosts: artifactory
+  become: True
+  gather_facts: true
+
+  handlers:
+    - name: restart nfs
+      service: name=nfs-server state=restarted
+
+    - name: restart firewalld
+      service: name=firewalld state=restarted
+
+  roles:
+    - { role: geerlingguy.nfs }
+
+  vars:
+    nfs_exports: { "/var/opt/jfrog/rh-repos 192.168.122.0/24(rw,sync,no_root_squash)" }
+
+  tasks:
+    - name: Install a clan packages (this will take a few minutes)
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - "@^graphical-server-environment"
+        - virt-install
+        - libguestfs-tools
+        - virt-manager
+
+    - name: Enable and start service
+      service:
+        name: "{{ item }}"
+        enabled: yes
+        state: started
+      with_items:
+        - nfs-server
+        - rpcbind
+        - libvirtd
+
+    - name: Create export dir
+      file:
+        path: "/var/opt/jfrog/rh-repos"
+        state: directory
+        mode: 0777
+
+    - name: Set the target to graphical
+      command: systemctl set-default graphical.target
+
+    - name: Open rpc-bind ports in the firewall
+      firewalld:
+        service: "{{ item }}"
+        permanent: true
+        immediate: true
+        state: enabled
+      with_items:
+        - rpc-bind
+        - mountd
+        - nfs
+      notify: restart firewalld
+
+    - name: Add virbr0 to firewall for NFS
+      firewalld:
+        interface: virbr0
+        permanent: true
+        immediate: true
+        state: enabled
+      notify: restart firewalld
