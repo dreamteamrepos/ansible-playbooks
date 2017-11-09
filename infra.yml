@@ -1,0 +1,12 @@
+---
+- include: all.yml
+
+- name: Run tasks specific to infra project
+  hosts: infra
+  become: true
+  become_method: sudo
+  become_user: root
+  gather_facts: false
+
+  roles:
+    - breakglass

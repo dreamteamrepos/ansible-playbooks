@@ -1,4 +1,4 @@
-roles
+roles/*
 *.py
 *.pyc
 *.swp

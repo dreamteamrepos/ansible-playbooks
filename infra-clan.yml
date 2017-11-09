@@ -1,0 +1,12 @@
+---
+- import_playbook: infra.yml
+
+- name: Runs tasks specific to the infra project, clan network
+  hosts: infra-clan
+  become: true
+  become_method: sudo
+  become_user: root
+  gather_facts: false
+  
+  roles:
+    - authorization

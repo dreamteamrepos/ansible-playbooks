@@ -1,0 +1,14 @@
+---
+- import_playbook: infra-clan.yml
+
+- name: Run tasks common to all of infra project, clan network, prod environment tier
+  hosts: infra-clan-prod
+  become: true
+  become_method: sudo
+  become_user: root
+  gather_facts: false
+  
+  tasks:
+  local_action:
+    debug:
+      msg: "There are currently no tasks specific to infra-clan-prod" 

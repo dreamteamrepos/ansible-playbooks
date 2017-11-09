@@ -1,0 +1,13 @@
+---
+- import_playbook: infra-badger-prod.yml
+
+- name: Set up cephadmin in the infra project, badger network, and prod tier
+  hosts: infra-badger-prod-cephadmin
+  become: true
+  become_method: sudo
+  become_user: root
+  gather_facts: true
+
+  roles:
+    - ceph-admin
+...

@@ -1,0 +1,15 @@
+---
+
+- name: Run tasks common to all projects, networks, environment tiers, roles, and hosts
+  hosts: all
+  become: true
+  become_method: sudo
+  become_user: root
+  gather_facts: true
+
+  roles:
+    - host_rename
+    - repositories
+    - global_base
+    - bash
+    - motd

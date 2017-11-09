@@ -1,0 +1,15 @@
+---
+- import_playbook: infra-badger.yml
+
+- name: Run tasks common to all of infra project, badger network, prod environment tier
+  hosts: infra-badger-prod
+  become: true
+  become_method: sudo
+  become_user: root
+  gather_facts: false
+
+  tasks:
+  local_action:
+    debug:
+      msg: "There are currently no tasks specific to infra-badger-prod"
+

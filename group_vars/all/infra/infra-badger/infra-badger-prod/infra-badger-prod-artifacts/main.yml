@@ -1,0 +1,44 @@
+---
+
+# This is the version of Postgres you wish to install
+pg_ver: "9.5"
+
+# This is the name of the table and user inside of Postgres database for artifactory
+pg_database: artifactory
+pg_database_user: artifactory
+
+# This is the name of the desired public URI for Artifactory
+public_uri: artifacts.prod.badger.net
+
+# This is the location of the Postgres database server (localhost if on same box)
+db_server: localhost
+
+# This is the password to the database
+db_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          37366531356464646262643234323332353431333466336566656662616361633630656131353637
+          3763336635303532353535373131623839626334623165380a333132656632353037623736353965
+          37303334643563343133646161376234646435376430373536376366333066323664643635643465
+          3132646562396165310a643263303364376436343634373533366265633635396463626639323863
+          32356636316438626238343465383539343931613163656665353063666165656139
+
+# Teaming configuration settings
+teams:
+  - team: team0               # Name of team, applied as "conn_name" in role
+    onboot: "yes"             # Sets whether or not team will start on boot
+    ip4: "{{ team0_ip4 }}"    # Set IP address as a host_var
+    cidr: "{{ team0_cidr }}"  # Set the CIDR (i.e. 24, 16, 8, 32, etc.)
+    gw4: "{{ team0_gw4 }}"    # Set gateway IP as a host_var
+    mtu: "9000"               # Set to "9000" for jumbo packets, else "1500"
+    mode: "balance-rr"        # Default is "balance-rr"
+    type: "ethernet"          # This is usually "ethernet"
+    slaves:                   # This is a list of the slaved devices
+      - em1
+  - team: team1
+    onboot: "no"
+    slaves:
+      - em2
+      - em3
+      - em4
+      - p2p1
+      - p2p2

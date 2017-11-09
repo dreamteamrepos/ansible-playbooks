@@ -1,0 +1,16 @@
+---
+- import_playbook: infra.yml
+
+- name: Run tasks common to all of infra project, badger network
+  hosts: infra-badger
+  become: true
+  become_method: sudo
+  become_user: root
+  gather_facts: false
+  
+  vars_files:
+  - vault/certs/{{ realm }}.yml
+
+  roles:
+    - authentication
+    - authorization
