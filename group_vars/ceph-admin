@@ -1,0 +1,23 @@
+---
+ceph_public_network: 192.168.124.0/24
+ceph_cluster_network: "{{ ceph_public_network }}"
+
+reposerver: 132.250.80.22
+
+osd_devices:
+  - drive: sdb
+    journal: nvme0n1
+  - drive: sdc
+    journal: nvme0n1
+  - drive: sdd
+    journal: nvme0n2
+  - drive: sde
+    journal: nvme0n2
+  - drive: sdf
+    journal: nvme0n3
+  - drive: sdg
+    journal: nvme0n3
+  - drive: sdh
+    journal: nvme0n4
+  - drive: sdi
+    journal: nvme0n4
