@@ -1,5 +1,5 @@
 ---
-- include: infrastructure.yml
+- import_playbook: infrastructure.yml
 
 - name: Set up Artifactory
   hosts: artifactory

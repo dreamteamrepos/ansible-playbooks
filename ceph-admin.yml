@@ -1,10 +1,10 @@
 ---
-- include: infrastructure.yml
+- import_playbook: infrastructure.yml
 
 - name: Set up ceph-admin
   hosts: ceph-admin
   become: True
   gather_facts: true
 
-  #roles:
-  #  - ceph-admin
+  roles:
+    - cephadmin
