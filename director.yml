@@ -1,10 +1,10 @@
 ---
-- include: infrastructure.yml
+- import_playbook: base.yml
 
 - name: Set up director node
   hosts: director
   become: True
   gather_facts: true
 
-  #roles:
-  #  - director
+  roles:
+    - director
