@@ -1,0 +1,19 @@
+---
+# This dictionary defines the relationship between OSD nodes and their journal location
+osd_devices:
+  - drive: sdb
+    journal: nvme0n1
+  - drive: sdc
+    journal: nvme0n1
+  - drive: sdd
+    journal: nvme0n2
+  - drive: sde
+    journal: nvme0n2
+  - drive: sdf
+    journal: nvme0n3
+  - drive: sdg
+    journal: nvme0n3
+  - drive: sdh
+    journal: nvme0n4
+  - drive: sdi
+    journal: nvme0n4

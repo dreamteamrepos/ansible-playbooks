@@ -1,0 +1,3 @@
+---
+# This variable is used by playbooks to perform network-specific tasks
+net_name: clan

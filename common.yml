@@ -1,0 +1,28 @@
+---
+- name: Executing tasks common to all DREAM infrastructure hosts
+  hosts: all
+  become: true
+  become_method: sudo
+  become_user: root
+  gather_facts: true
+
+  roles:
+    - host_rename
+    - repos
+    - global_base
+    - bash
+    - motd
+
+  tasks:
+  - block:
+      - name: Including the vars_file containing the realm's CA certificate
+        include_vars:
+          file: vault/certs/{{ realm }}.yml
+      - name: Including the authentication role
+        include_role:
+          name: authentication
+      - name: Including the authorization role
+        include_role:
+          name: authorization
+    when: net_name != 'clan'
+...

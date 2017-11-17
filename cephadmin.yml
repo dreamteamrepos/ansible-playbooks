@@ -1,12 +1,13 @@
 ---
 - import_playbook: common.yml
 
-- name: Ensuring configuration of Postgresql host(s)
-  hosts: postgresql
+- name: Ensuring configuration of Ceph Admin host(s)
+  hosts: cephadmin
   become: true
   become_method: sudo
   become_user: root
   gather_facts: true
 
   roles:
-    - postgresql
+    - cephadmin
+...

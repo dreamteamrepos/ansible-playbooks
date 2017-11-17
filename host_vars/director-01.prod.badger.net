@@ -1,0 +1,12 @@
+---
+# These are host_vars, specific to an individual node
+under_host: 'undercloud.redhat.local'
+ip_add: '192.168.10.28/24'
+gateway: '192.168.10.254'
+public_vip: '132.250.80.28'
+admin_vip: '192.168.10.253'
+cidr: '192.168.10.0/24'
+masquerade: '192.168.10.0/24'
+dhcp1: '192.168.10.50'
+dhcp2: '192.168.10.100'
+ins_iprange: '192.168.10.200,192.168.10.250'

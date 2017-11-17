@@ -1,10 +1,13 @@
 ---
-- include: infrastructure.yml
+- import_playbook: common.yml
 
-- name: Set up director node
+- name: Ensuring the configuration of the director host(s)
   hosts: director
-  become: True
+  become: true
+  become_method: sudo
+  become_user: root
   gather_facts: true
 
-  #roles:
-  #  - director
+  roles:
+    - director
+...
