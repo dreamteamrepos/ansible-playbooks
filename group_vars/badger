@@ -2,6 +2,9 @@
 # This variable is used by some of the playbooks to do network-specific tasks
 net_name: badger
 
+# Sets that EPEL should be used by default
+epel: True
+
 # This is the name of the hostname or IP address of the yum repo server hosting RH packages
 reposerver: !vault |
           $ANSIBLE_VAULT;1.1;AES256

@@ -1,7 +1,7 @@
-Artifacts.yml`
+Artifacts.yml
 =====
 
-The artifacts.yml`playbook includes some hard-coded tasks for the CLAN network that do not live in a role. The playbook's purpose is to install the following services, in addition to what is commonly installed on artifacts servers in other all networks:
+The artifacts.yml playbook includes some hard-coded tasks for the CLAN network that do not live in a role. The playbook's purpose is to install the following services, in addition to what is commonly installed on artifacts servers in other all networks:
 
 * NFS
 * libvirt
@@ -30,7 +30,7 @@ virt-install --name reposync \
 --noautoconsole --vnc \
 --import
 ```
-* If not already completed, pass the activation key to `subscription-manager` and double-check connectivity to RH CDN 
+* If not already completed, pass the activation key to `subscription-manager` and double-check connectivity to RH CDN
 
 Tested OSes
 ------------------
