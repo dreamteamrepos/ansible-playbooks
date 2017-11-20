@@ -1,0 +1,6 @@
+---
+
+# These variables define the networks that Ceph will use the transmit data to clients, and between cluster nodes
+ceph_cluster_network: "{{ ceph_public_network }}"
+ceph_public_network: 192.168.124.0/24
+

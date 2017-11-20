@@ -1,9 +1,5 @@
 ---
-ceph_public_network: 192.168.124.0/24
-ceph_cluster_network: "{{ ceph_public_network }}"
-
-reposerver: 132.250.80.22
-
+# This dictionary defines the relationship between OSD nodes and their journal location
 osd_devices:
   - drive: sdb
     journal: nvme0n1

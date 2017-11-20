@@ -1,0 +1,14 @@
+---
+# The import_playbook is temporarily commented-out since it's not required for testing the osp-controller role
+#- import_playbook: common.yml
+
+- name: Ensuring configuration of OSP Controller host(s)
+  hosts: osp-controller
+  become: true
+  become_method: sudo
+  become_user: root
+  gather_facts: true
+
+  roles:
+    - osp-controller
+...

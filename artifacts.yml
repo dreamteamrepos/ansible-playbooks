@@ -1,0 +1,95 @@
+---
+- import_playbook: common.yml
+
+- name: Ensuring that Artifactory, postgres, and nginx are setup on host(s)
+  hosts: artifacts
+  become: true
+  become_method: sudo
+  become_user: root
+  gather_facts: true
+
+  vars:
+    nfs_exports: { "/var/opt/jfrog/rh-repos 192.168.122.0/24(rw,sync,no_root_squash)" }
+
+  handlers:
+    - name: restart nfs
+      service: name=nfs-server state=restarted
+    - name: restart firewalld
+      service: name=firewalld state=restarted
+
+  roles:
+    - teaming
+    - nginx
+    - postgresql
+    - artifactory
+
+# This block is only needed for the commercial lan server
+# Once this completes there are a few manual steps that will currently need to be run
+# See docs/ for more information
+
+  tasks:
+  - block:
+   - include_role:
+        name: ansible-role-nfs
+
+    - name: Ensuring the required packages are installed (this will take a few minutes)
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - "@^graphical-server-environment"
+        - virt-install
+        - libguestfs-tools
+        - virt-manager
+
+    - name: Ensuring the nfs services are enabled and started
+      service:
+        name: "{{ item }}"
+        enabled: yes
+        state: started
+      with_items:
+        - nfs-server
+        - rpcbind
+        - libvirtd
+
+    - name: Ensuring the nfs export directory has been created
+      file:
+        path: "/var/opt/jfrog/rh-repos"
+        state: directory
+        mode: 0777
+
+    - name: Getting current default target
+      command: systemctl get-default
+      args:
+        warn: false
+      register: default_target
+      changed_when: false
+
+    - name: Ensuring default target is set to graphical
+      command: systemctl set-default graphical.target
+      args:
+        warn: false
+      when: "'graphical.target' not in default_target.stdout_lines"
+
+    - name: Ensuring rpc-bind ports are open on the firewall
+      firewalld:
+        service: "{{ item }}"
+        permanent: true
+        immediate: true
+        state: enabled
+      with_items:
+        - rpc-bind
+        - mountd
+        - nfs
+      notify: restart firewalld
+
+    - name: Ensuring  virbr0 is added to firewall for NFS
+      firewalld:
+        interface: virbr0
+        permanent: true
+        immediate: true
+        state: enabled
+      notify: restart firewalld
+    when: net_name == 'clan'
+...
+

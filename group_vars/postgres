@@ -1,6 +1,8 @@
 ---
+# This is the version of postgres you wish to install
 pg_ver: "9.5"
 
+# This is the motd you wish to add to /etc/motd
 motd_text: |
           This system runs postgresql {{ pg_ver }}.
           
@@ -13,4 +15,3 @@ motd_text: |
           To check the status of the service run:
           
             systemctl status $service_name
-

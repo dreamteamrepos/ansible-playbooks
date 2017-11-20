@@ -1,4 +1,5 @@
-roles
+roles/*
 *.py
 *.pyc
 *.swp
+*.retry
