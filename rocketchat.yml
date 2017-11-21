@@ -1,0 +1,13 @@
+---
+- import_playbook: common.yml
+
+- name: Set up rocketchat server
+  hosts: rocketchat
+  become: true
+  gather_facts: true
+
+  roles:
+    - lvm_partition
+    - docker-setup
+    - nginx
+    - rocketchat

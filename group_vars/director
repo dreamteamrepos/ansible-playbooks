@@ -1,20 +1,40 @@
 ---
 # These are group_vars that apply to all director nodes
 under_image: '/home/stack/images/'
-under_admin_pass: 'redhat'
-gen_serv_cert: 'true'
-local_int: 'eth1'
+under_host: "{{ ansible_fqdn }}"
+ip_add: '132.250.140.23/24'
+gateway: '132.250.140.254'
+public_vip: '132.250.140.21'
+admin_vip: '132.250.140.24'
+gen_serv_cert: 'True'
+local_int: 'ens224'
 gen_ca: 'local'
-ins_interface: 'br-ctlplane'
-ins_runbench: 'false'
-ins_enable_uefi: 'true'
-under_debug: 'false'
-tempest: 'true'
-mistral: 'true'
-zaqar: 'true'
-telemetry: 'true'
-on_ui: 'true'
-en_valid: 'true'
-ipxe_en: 'frue'
-events: 'false'
-cl_nodes: 'false'
+cidr: '132.250.140.0/24'
+masquerade: '132.250.140.0/24'
+dhcp1: '132.250.140.50'
+dhcp2: '132.250.140.100'
+ins_interface: 'ens224'
+ins_iprange: '132.250.140.101,132.250.140.110'
+ins_runbench: 'False'
+ins_enable_uefi: 'True'
+under_debug: 'False'
+tempest: 'True'
+mistral: 'False'
+zaqar: 'False'
+telemetry: 'True'
+on_ui: 'True'
+en_valid: 'True'
+ipxe_en: 'True'
+events: 'False'
+cl_nodes: 'False'
+under_admin_pass: 'redhat'
+
+rhel_common_rpms: True
+rhel_extra_rpms: True
+rhel_server_ha_rpms: True
+
+openstack_rpms: True
+openstack_director_rpms: False
+openstack_tools_rpms: False
+
+epel: False
